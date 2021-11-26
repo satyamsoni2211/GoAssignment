@@ -10,7 +10,7 @@ type API struct {
 }
 
 func (api *API) Greet(greet string, reply *string) error {
-	fmt.Println("Received ", greet)
+	fmt.Println("Received Message ", greet)
 	*reply = `Please enter your blockchain address 
 	(eg. 0xE4559721E46326F18FF59e3D926E4489FE6a5162)`
 	return nil
@@ -21,9 +21,9 @@ func (api *API) ValidateEthAdress(adress string, reply *string) error {
 	err := ethAdress.UnmarshalText([]byte(adress))
 	if err != nil {
 		fmt.Println(err)
-		*reply = fmt.Sprintf("Adress %s is not valid, %s, please provide valid adress", adress, err)
+		*reply = "Invalid Blockchain Address"
 		return nil
 	}
-	*reply = fmt.Sprintf("Adress %s is valid ", ethAdress.String())
+	*reply = fmt.Sprintf("Received Blockchain address %s", ethAdress.String())
 	return nil
 }
